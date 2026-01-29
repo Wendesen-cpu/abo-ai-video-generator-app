@@ -545,6 +545,16 @@ function SidebarMenuButton({
   )
 }
 
+/**
+ * Renders the action control displayed in the top-right of a sidebar menu item.
+ *
+ * Applies positioning, sizing, and responsive hit-area styling and controls visibility based
+ * on hover, focus, and active states when `showOnHover` is enabled.
+ *
+ * @param asChild - Render a Slot instead of a native `button` to forward a custom child element.
+ * @param showOnHover - When `true`, the action is hidden by default and becomes visible on hover, focus-within, or when the menu is active.
+ * @returns The rendered action element for placement inside a sidebar menu item.
+ */
 function SidebarMenuAction({
   className,
   asChild = false,
@@ -599,6 +609,14 @@ function SidebarMenuBadge({
   )
 }
 
+/**
+ * Placeholder row used while a sidebar menu item is loading.
+ *
+ * Renders an optional icon placeholder and a text skeleton; the text skeleton uses a fixed width of 70%.
+ *
+ * @param showIcon - If `true`, render a square icon skeleton to the left of the text skeleton.
+ * @returns A div element containing the skeleton placeholders for a sidebar menu item.
+ */
 function SidebarMenuSkeleton({
   className,
   showIcon = false,
