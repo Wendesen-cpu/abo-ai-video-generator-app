@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useUser, useClerk } from "@clerk/nextjs";
+import { useUser, useClerk, UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 
 export function Header() {
@@ -19,7 +19,7 @@ export function Header() {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-black/80">
-            <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-8">
+            <div className="flex h-16 items-center justify-between pl-6 pr-8">
                 <Link href="/" className="flex items-center gap-2">
                     <div className="h-8 w-8 rounded-lg bg-indigo-600 flex items-center justify-center">
                         <span className="text-white font-bold">ABO</span>
@@ -30,18 +30,28 @@ export function Header() {
                 </Link>
 
                 <nav className="flex items-center gap-4">
-                    <Button
-                        asChild={isSignedIn}
-                        variant="outline"
-                        className="rounded-full px-6 transition-all hover:border-indigo-500"
-                        onClick={!isSignedIn ? handleDashboardClick : undefined}
-                    >
-                        {isSignedIn ? (
-                            <Link href="/dashboard">Dashboard</Link>
-                        ) : (
-                            <span>Dashboard</span>
-                        )}
-                    </Button>
+                    {isSignedIn ? (
+                        <>
+                            <Button asChild variant="ghost" className="rounded-full">
+                                <Link href="/dashboard">Dashboard</Link>
+                            </Button>
+                            <UserButton
+                                appearance={{
+                                    elements: {
+                                        avatarBox: "h-10 w-10",
+                                    },
+                                }}
+                            />
+                        </>
+                    ) : (
+                        <Button
+                            variant="outline"
+                            className="rounded-full px-6 transition-all hover:border-indigo-500"
+                            onClick={handleDashboardClick}
+                        >
+                            Dashboard
+                        </Button>
+                    )}
                 </nav>
             </div>
         </header>
